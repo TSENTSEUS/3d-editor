@@ -297,4 +297,3 @@ control.addEventListener( 'dragging-changed', function ( event ) {
 
 scene.add( control );
 
-
