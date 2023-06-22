@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26 - Code structuring</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <canvas class="webgl"></canvas>
+    <script type="module" src="./script.js"></script>
+    <div class="menu">
+        <div class="material" id="materialSettings">
+            Import Model
+            <div>
+                <input id="model" type="file" />
+            </div>
+            Material Settings
+            <div>
+                Color:
+                <input type="color" id="color"/>
+            </div>
+            <div>
+                Opacity:
+                <input type="range" id="opacity" min="0" max="1" value="1" step="0.01"/>
+            </div>
+            <div>
+                AoMap:
+                <div class="file-input-wrapper">
+                    <input type="file" class="file-input" id="aoMap" multiple>
+                    <label for="aoMap" id="aomapInputLabel">Choose AO Maps...</label>
+                </div>
+            </div>
+            <div>
+                Metalness:
+                <input type="range" id="metalness" min="0" max="1" value="1" step="0.01"/>
+            </div>
+            <div>
+                Roughness:
+                <input type="range" id="roughness" min="0" max="1" value="1" step="0.01"/>
+            </div>
+            <div>
+                Normals:
+                <div class="file-input-wrapper">
+                    <input type="file" class="file-input" id="normals" />
+                    <label for="normals" id="normalsMapLabel">Choose normal map</label>
+                </div>
+            </div>
+            Environment map:
+            <div class="file-input-wrapper">
+                <input type="file" multiple id="envMap" class="file-input"/>
+                <label for="envMap" >Choose env map</label>
+            </div>
+            <div class="warning">
+                warning, env map must include in name its position.
+                px.jpg, nx.jpg etc.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
