@@ -1,7 +1,8 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import EventEmitter from './EventEmitter.js'
-import { DRACOLoader} from "three/examples/jsm/loaders/DRACOLoader.js";
+import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 
 export default class Resources extends EventEmitter
 {
@@ -25,11 +26,13 @@ export default class Resources extends EventEmitter
         this.loaders.gltfLoader = new GLTFLoader()
         this.loaders.gltfLoader.setDRACOLoader(this.loaders.dracoLoader)
         this.loaders.textureLoader = new THREE.TextureLoader()
+        this.loaders.rgbeLoader = new RGBELoader()
         this.loaders.cubeTextureLoader = new THREE.CubeTextureLoader()
     }
 
     loadModel(path,type)
     {
+
         // Load each source
 
             if(type === 'glb')
@@ -46,8 +49,9 @@ export default class Resources extends EventEmitter
                 )
                 })
             }
-            else if(type === 'texture')
+            else if(type === 'texture' || type === "png")
             {
+
                 return new Promise((resolve,reject) =>
                 {
                     this.loaders.textureLoader.load(
@@ -59,8 +63,9 @@ export default class Resources extends EventEmitter
                     )
                 })
             }
-            else if(type === 'cubeTexture')
+            else  if(type === 'cubeTexture')
             {
+
                 return new Promise((resolve,reject) =>
                 {
                     this.loaders.cubeTextureLoader.load(
@@ -71,7 +76,20 @@ export default class Resources extends EventEmitter
                         }
                     )
                 })
-        }
+            }
+            else if(type === 'hdr') {
+                return new Promise((resolve,reject) =>
+                {
+                    this.loaders.rgbeLoader.load(
+                        path,
+                        (file) =>
+                        {
+                            resolve(file)
+                        }
+                    )
+                })
+            }
+
     }
 
 }

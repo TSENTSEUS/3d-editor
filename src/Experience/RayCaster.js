@@ -34,14 +34,10 @@ export default class RayCaster {
             if(this.intersects.length > 0)
             {
                 this.experience.activeMesh = this.intersects[0].object;
-                this.boxHelper.showBoxHelper();
                 this.transformControls.attachControls();
                 this.menu.updateInputValues()
-
             } else {
                 this.menu.defaultInputValues();
-                this.boxHelper.hideBoxHelper();
-                this.transformControls.detachControls();
             }
         }
     }

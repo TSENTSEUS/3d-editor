@@ -18,6 +18,8 @@ export default class TransformController {
 
         this.instance.addEventListener( 'dragging-changed', ( event ) => {
             this.experience.camera.controls.enabled = ! event.value;
+
+            this.experience.transformControlsActive = ! event.value;
         } );
         this.scene.add(this.instance);
     }

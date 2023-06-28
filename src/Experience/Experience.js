@@ -33,6 +33,7 @@ export default class Experience
         this.canvas = _canvas
 
         // Setup
+        this.transformControlsActive = false;
         this.sources = [];
         this.activeMesh = null;
         this.sizes = new Sizes()
@@ -44,8 +45,8 @@ export default class Experience
         this.world = new World()
         this.boxHelper = new BoxHelper();
         this.transformControls = new TransformController();
-        this.inputMaster = new InputMaster();
         this.menu = new Menu();
+        this.inputMaster = new InputMaster();
         this.rayCaster = new RayCaster();
 
         // Resize event
@@ -62,10 +63,19 @@ export default class Experience
 
 
 
+
         window.addEventListener('click', (event) =>
         {
+            if(this.transformControlsActive)
+            {
+                this.transformControlsActive = null;
+                this.menu.updateInputValues()
+
+                return
+            }
             this.rayCaster.setRaycast();
             this.rayCaster.castRaycast();
+
         })
 
     }
@@ -84,37 +94,4 @@ export default class Experience
         this.renderer.update()
     }
 
-    destroy()
-    {
-        this.sizes.off('resize')
-        this.time.off('tick')
-
-        // Traverse the whole scene
-        this.scene.traverse((child) =>
-        {
-            // Test if it's a mesh
-            if(child instanceof THREE.Mesh)
-            {
-                child.geometry.dispose()
-
-                // Loop through the material properties
-                for(const key in child.material)
-                {
-                    const value = child.material[key]
-
-                    // Test if there is a dispose function
-                    if(value && typeof value.dispose === 'function')
-                    {
-                        value.dispose()
-                    }
-                }
-            }
-        })
-
-        this.camera.controls.dispose()
-        this.renderer.instance.dispose()
-
-        if(this.debug.active)
-            this.debug.ui.destroy()
-    }
 }

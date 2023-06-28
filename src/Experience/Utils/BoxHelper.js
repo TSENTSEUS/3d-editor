@@ -8,14 +8,14 @@ export default class BoxHelper {
         this.activeHelper = null;
     }
 
-    attachBoxHelper()
+    attachBoxHelper(activeMesh)
     {
-        this.activeMesh = this.experience.activeMesh;
+        this.activeMesh = activeMesh;
         this.activeHelper = new THREE.BoxHelper(this.activeMesh, "orange");
         this.scene.add(this.activeHelper);
     }
 
-    hideBoxHelper()
+    detachBoxHelper()
     {
         this.activeHelper.visible = false;
     }

@@ -20,6 +20,7 @@ body
 .menu {
     position: fixed;
     top: 5px;
+    z-index: 5;
     max-width: 240px;
     padding: 10px;
     left: 5px;
@@ -65,4 +66,10 @@ label {
     font-size: 13px;
     width: fit-content;
     color: red;
+}
+
+#materialsDiv {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
 }
