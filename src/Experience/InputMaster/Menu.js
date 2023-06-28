@@ -45,7 +45,7 @@ export default class Menu {
         }
         this.colorInput.value = this.activeMesh.material?.color ? "#" + this.color.getHexString() : "#000000";
         this.materialsDiv.style.display = 'flex'
-        this.nameLabel.textContent = this.activeMesh.name;
+        this.nameLabel.textContent = this.activeMesh.name === "" ? "Empty" : this.activeMesh.name;
     }
 
     defaultInputValues()
