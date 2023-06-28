@@ -23,7 +23,6 @@ export default class InputMaster {
         this.menuItems = document.querySelectorAll('.menu');
         this.worldMaterial = this.experience.world.world;
         this.envMap = null
-
         this.menuPropagation();
         this.modelInputHandler();
         this.modelInputListener();
@@ -131,7 +130,7 @@ export default class InputMaster {
                     child.material.aoMap = this.result;
                     child.material.needsUpdate = true;
                     child.userData.aoMapName = this.uploadedFile.name;
-                })
+                });
                 this.aoMapInputLabel.textContent = this.uploadedFile.name;
             }
         })

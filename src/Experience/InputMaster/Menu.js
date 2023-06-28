@@ -13,6 +13,8 @@ export default class Menu {
         this.colorLabel = document.getElementById('colorLabel');
         this.materialsDiv = document.getElementById('materialsDiv');
         this.colorInput = document.getElementById('color');
+        this.nameLabel = document.getElementById('name');
+
         this.defaultInputValues();
     }
 
@@ -43,7 +45,7 @@ export default class Menu {
         }
         this.colorInput.value = this.activeMesh.material?.color ? "#" + this.color.getHexString() : "#000000";
         this.materialsDiv.style.display = 'flex'
-
+        this.nameLabel.textContent = this.activeMesh.name;
     }
 
     defaultInputValues()
@@ -53,6 +55,7 @@ export default class Menu {
         this.typeLabel.textContent = "Scene";
         this.colorLabel.textContent = "Background color"
         this.materialLabel.textContent = "None";
+        this.nameLabel.textContent = "Main Scene";
         if(this.typeLabel.textContent === "Scene")
         {
             this.materialsDiv.style.display = 'none'
